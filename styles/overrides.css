@@ -1,0 +1,9 @@
+/* All the overwriting of the default User Stylesheet are here */
+body {
+  margin: 0px;
+}
+
+ul {
+  list-style: none;
+  padding: 0px;
+}

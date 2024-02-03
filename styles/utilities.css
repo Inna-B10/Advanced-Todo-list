@@ -1,0 +1,26 @@
+/* In here are a bunch of tiny css classes for often used functionality */
+/* If you decide this is a good way to style an application */
+/* Have a look at https://tailwindcss.com */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.justify-center {
+  justify-content: center;
+}

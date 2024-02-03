@@ -1,0 +1,11 @@
+/* Any of your own custom CSS classes are in here */
+.todo-list-inputs {
+  padding: 1rem;
+}
+
+.todo-item {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(199, 199, 199);
+  padding: 0px 2rem;
+}
