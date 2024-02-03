@@ -19,4 +19,24 @@
  * @param {Todo} data
  * @returns {HTMLElement}
  */
-export function createTodoElement(data) {}
+
+const template = `
+<div>
+    <h2></h2>
+    <div>
+        <span></span>
+    </div>
+</div>
+`;
+export function createTodoElement(data) {
+  const wrapper = document.createElement("li");
+  wrapper.innerHTML = template;
+
+  const title = wrapper.querySelector("h2");
+  title.innerText = data.title;
+
+  const createdAt = wrapper.querySelector("span");
+  createdAt.innerText = data.createdAt;
+
+  return wrapper;
+}

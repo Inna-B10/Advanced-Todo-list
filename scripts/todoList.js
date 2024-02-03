@@ -6,6 +6,8 @@
  * api is cocerned with
  */
 
+import { createUniqueId } from "./utilities.js";
+
 /**
  * A single Todo item we will
  * store.
@@ -34,14 +36,17 @@
  *
  * @type {Todo[]}
  */
-const todoes = [];
+const oldTodoes = JSON.parse(localStorage.getItem("TodoList"));
+const todoes = oldTodoes ? oldTodoes : [];
 
 /**
  * Returns all the Todoes in a list
  *
  * @returns {Todo[]}
  */
-export function getAllTodoes() {}
+export function getAllTodoes() {
+  return todoes;
+}
 
 /**
  * Creates a new Todo based on the passed
@@ -49,4 +54,20 @@ export function getAllTodoes() {}
  *
  * @param {TodoCreationInfo} data
  */
-export function addTodo(data) {}
+export function addTodo(data) {
+  const createdTime = new Intl.DateTimeFormat("no-NO", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  }).format(new Date());
+
+  const newTask = {
+    id: createUniqueId(),
+    title: data.title,
+    createdAt: createdTime,
+  };
+  let allTodoes = getAllTodoes();
+  allTodoes.push(newTask);
+
+  allTodoes = JSON.stringify(allTodoes);
+  localStorage.setItem("TodoList", allTodoes);
+}

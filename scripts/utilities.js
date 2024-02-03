@@ -8,3 +8,8 @@
  * Something ala:
  * @typedef {() => number} GenerateId
  */
+let id = 0;
+export function createUniqueId() {
+  const newId = id++;
+  return newId;
+}
