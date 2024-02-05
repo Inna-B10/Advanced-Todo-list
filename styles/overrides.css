@@ -14,7 +14,6 @@ body {
 
 input {
   padding: 10px;
-  margin: 20px 0px;
   width: 70%;
   border: 2px solid var(--color-primary);
   border-radius: 4px;
@@ -64,7 +63,7 @@ h2 {
 
 select {
   background-color: #1E90FF;
-  padding: 3px;
+  padding: 8px;
   border-color: var(--color-primary);
   border-radius: 4px;
   color: var(--color-white);

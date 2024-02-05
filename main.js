@@ -81,7 +81,7 @@ formElement.addEventListener("submit", (event) => {
           array = JSON.stringify(array);
           localStorage.setItem("TodoList", array);
 
-          const title = item.parentElement.querySelector("h2");
+          const title = item.parentElement.querySelector(".update-title-input");
           title.classList.toggle("complete");
 
           const button = item.parentElement.querySelector(".fa");

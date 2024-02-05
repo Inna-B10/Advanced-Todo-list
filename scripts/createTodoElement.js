@@ -50,7 +50,12 @@ export function createTodoElement(data) {
 
   divTodo.appendChild(completeBtn);
 
-  const title = createNode("h2", {});
+  const title = createNode("input", {
+    type: "text",
+    value: data.title,
+    class: "update-title-input",
+    disabled: "",
+  });
   title.innerText = data.title;
   divTodo.appendChild(title);
 
@@ -91,7 +96,7 @@ export function createTodoElement(data) {
   wrapper.appendChild(divInfo);
 
   if (data.isComplete) {
-    const isComplete = wrapper.querySelector("h2");
+    const isComplete = wrapper.querySelector(".update-title-input");
     isComplete.classList.add("complete");
   }
 
