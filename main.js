@@ -105,26 +105,36 @@ formElement.addEventListener("submit", (event) => {
 
     /* ---------------------------- Edit/rename Task ---------------------------- */
     case "edit":
-      const editInput = item.previousElementSibling;
-      editInput.disabled = false;
-      editInput.classList.add("active-input", "edited");
-      editInput.classList.remove("update-title-input");
+      const unSaved = document.querySelector(".edited");
+      if (unSaved) {
+        alert("You have unsaved task!");
+      } else {
+        const editInput = item.previousElementSibling;
+        editInput.disabled = false;
+        editInput.classList.add("active-input", "edited");
+        editInput.classList.remove("update-title-input");
+      }
       break;
 
     /* ------------------------- Save Task After Editing ------------------------ */
     case "save":
       const selectedInput = document.querySelector(".edited");
       const saveInput = selectedInput.value;
+      if (saveInput.trim() === "") {
+        alert(
+          "To do task is empty. If you want to delete it, click on trash button."
+        );
+      } else {
+        for (const todo of array) {
+          if (todo.id === Number(idValue)) {
+            todo.title = saveInput;
+            todo.editedAt = timeStamp();
 
-      for (const todo of array) {
-        if (todo.id === Number(idValue)) {
-          todo.title = saveInput;
-          todo.editedAt = timeStamp();
-
-          array = JSON.stringify(array);
-          localStorage.setItem("TodoList", array);
+            array = JSON.stringify(array);
+            localStorage.setItem("TodoList", array);
+          }
+          updateDisplay("all");
         }
-        updateDisplay("all");
       }
       break;
   }
