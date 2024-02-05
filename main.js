@@ -124,13 +124,8 @@ formElement.addEventListener("submit", (event) => {
           array = JSON.stringify(array);
           localStorage.setItem("TodoList", array);
         }
-        // saveInput.disabled = true;
-        // saveInput.classList.remove("active-input", "edited");
-        // saveInput.classList.add("update-title-input");
-
         updateDisplay("all");
       }
-
       break;
   }
 });
