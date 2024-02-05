@@ -33,7 +33,7 @@ const formElement = document.querySelector("form");
 deleteAll.addEventListener("click", deleteDB);
 function deleteDB() {
   localStorage.removeItem("TodoList");
-  updateDisplay("all");
+  location.reload();
 }
 
 /* ---------------- Send Filter All, Completed Or Uncompleted --------------- */
