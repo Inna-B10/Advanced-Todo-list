@@ -1,11 +1,65 @@
 /* Any of your own custom CSS classes are in here */
-.todo-list-inputs {
-  padding: 1rem;
+
+.todo-list {
+  border: 1px dotted var(--color-primary);
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 20px;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 1422 800" width="1422" height="800"><g transform="scale(1) rotate(15) translate(0 0) skewX(0) skewY(0)" transform-origin="711 400"><rect width="2844" height="1600" x="-711" y="-400" fill="url(%23rrreplicate-pattern3)"></rect></g><defs><pattern id="rrreplicate-pattern3" width="50" height="50" patternUnits="userSpaceOnUse" patternTransform="rotate(113)" stroke-opacity="1" stroke-width="0.6" fill="none" stroke="rgb(17 24 39 / 0.1)"><line x1="2.0833333333333335" y1="0" x2="2.0833333333333335" y2="50"></line><line x1="6.25" y1="0" x2="6.25" y2="50"></line><line x1="10.416666666666668" y1="0" x2="10.416666666666668" y2="50"></line><line x1="14.583333333333334" y1="0" x2="14.583333333333334" y2="50"></line><line x1="18.75" y1="0" x2="18.75" y2="50"></line><line x1="22.916666666666668" y1="0" x2="22.916666666666668" y2="50"></line><line x1="27.083333333333332" y1="0" x2="27.083333333333332" y2="50"></line><line x1="31.25" y1="0" x2="31.25" y2="50"></line><line x1="35.41666666666667" y1="0" x2="35.41666666666667" y2="50"></line><line x1="39.583333333333336" y1="0" x2="39.583333333333336" y2="50"></line><line x1="43.75000000000001" y1="0" x2="43.75000000000001" y2="50"></line><line x1="47.91666666666667" y1="0" x2="47.91666666666667" y2="50"></line></pattern></defs></svg>');
+}
+
+.user-input {
+  justify-content: space-between;
+  align-items: center;
 }
 
 .todo-item {
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: rgb(199, 199, 199);
-  padding: 0px 2rem;
+  padding: 20px 20px 0px 20px;
+}
+
+#todo-display > li:nth-of-type(odd) {
+  background-color: var(--color-gray-dark);
+  color: var(--color-black);
+}
+
+#todo-display > li:nth-of-type(even) {
+  background-color: var(--color-gray-light);
+  color: var(--color-black);
+}
+
+.addInfo {
+  align-items: end;
+  padding: 0 10px 5px 0;
+}
+
+.addInfo p {
+  font-size: small;
+  color: var(--color-primary);
+  padding: 10px 0 0 20px;
+}
+
+
+
+.complete {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+/* -------------------------------------------------------------------------- */
+.delete-all,
+.complete-btn,
+.trash-btn {
+  width: initial;
+  cursor: pointer;
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+.delete-all:hover,
+.complete-btn:hover,
+.trash-btn:hover {
+  background-color: RoyalBlue;
 }

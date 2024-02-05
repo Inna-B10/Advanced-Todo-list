@@ -8,8 +8,18 @@
  * Something ala:
  * @typedef {() => number} GenerateId
  */
-let id = 0;
-export function createUniqueId() {
-  const newId = id++;
-  return newId;
+
+// let id = 0;
+// export function createUniqueId() {
+//   const newId = id++;
+//   return newId;
+// }
+
+/* ------------------ Create Date For CreatedAt Or EditedAt ----------------- */
+export function timeStamp() {
+  const time = new Intl.DateTimeFormat("no-NO", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  }).format(new Date());
+  return time;
 }

@@ -1,16 +1,18 @@
 /* A set of premade colors, pick your poison */
 :root {
   --color-primary: rgb(64, 123, 234);
-  --color-secondary: rgb(255, 116, 66);
+  --color-secondary: rgb(245, 231, 45);
   --color-accent: rgb(162, 72, 165);
-  --color-gray: rgb(40, 40, 45);
-  --color-white: #f0f0f0;
+  --color-gray-dark: rgb(220, 220, 220);
+  --color-gray-light: rgb(237, 237, 237);
+  --color-white: #ffffff;
   --color-black: #0f0f0f;
 }
 
 .bg-primary {
   background-color: var(--color-primary);
 }
+
 .text-primary {
   color: var(--color-primary);
 }
@@ -18,6 +20,7 @@
 .bg-secondary {
   background-color: var(--color-secondary);
 }
+
 .text-secondary {
   color: var(--color-secondary);
 }
@@ -25,20 +28,23 @@
 .bg-accent {
   background-color: var(--color-accent);
 }
+
 .text-accent {
   color: var(--color-accent);
 }
 
-.bg-gray {
-  background-color: var(--color-gray);
+.bg-gray-dark {
+  background-color: var(--color-gray-dark);
 }
-.text-gray {
-  color: var(--color-gray);
+
+.text-gray-dark {
+  color: var(--color-gray-dark);
 }
 
 .bg-white {
   background-color: var(--color-white);
 }
+
 .text-white {
   color: var(--color-white);
 }
@@ -46,6 +52,7 @@
 .bg-black {
   background-color: var(--color-black);
 }
+
 .text-black {
   color: var(--color-black);
 }

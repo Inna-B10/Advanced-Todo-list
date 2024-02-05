@@ -8,27 +8,48 @@
     <link rel="stylesheet" href="styles/palettes.css" />
     <link rel="stylesheet" href="styles/utilities.css" />
     <link rel="stylesheet" href="styles/classes.css" />
+    <!-- Icon library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <script type="module" src="main.js"></script>
 
     <title>Todo List</title>
   </head>
-  <body class="min-h-screen flex flex-col">
-    <header class="bg-primary text-secondary">
+  <body class="min-h-screen flex column">
+    <header class="bg-primary text-white">
       <h1 class="text-center">Todo List</h1>
     </header>
 
     <main class="grow">
-      <div class="flex justify-center todo-list-inputs">
-        <input id="todo-text-input" type="text" autofocus />
-        <button id="todo-add-button">Add</button>
-      </div>
+      <form name="advanced-todo-list">
+        <div class="flex user-input">
+          <input
+            id="todo-text-input"
+            type="text"
+            name="title-input"
+            autofocus />
 
-      <ul id="todo-display"></ul>
+          <button type="submit" id="todo-add-button">Add</button>
+        </div>
+        <div>
+          <select name="select" id="selected-todoes">
+            <option value="all">All</option>
+            <option value="completed">Completed</option>
+            <option value="uncompleted">Uncompleted</option>
+          </select>
+          <button type="submit" id="deleteAll" class="delete-all">
+            Delete all &nbsp;&nbsp;<i class="fa fa-trash"></i>
+          </button>
+        </div>
+
+        <ul id="todo-display" class="todo-list"></ul>
+      </form>
     </main>
 
-    <footer class="bg-primary text-secondary">
-      <p class="text-center">Your name, and maybe some links 😉</p>
+    <footer class="bg-primary text-white">
+      <h2 class="text-center">Let's do it 😉!</h2>
     </footer>
   </body>
 </html>
