@@ -92,18 +92,14 @@ formElement.addEventListener("submit", (event) => {
       break;
     /* --------------------------- Delete Current Todo -------------------------- */
     case "delete":
-      if (unSaved) {
-        alert("You have unsaved task!");
-      } else {
-        for (const todo of array) {
-          if (todo.id === Number(idValue)) {
-            array.splice(array.indexOf(todo), 1);
+      for (const todo of array) {
+        if (todo.id === Number(idValue)) {
+          array.splice(array.indexOf(todo), 1);
 
-            array = JSON.stringify(array);
-            localStorage.setItem("TodoList", array);
+          array = JSON.stringify(array);
+          localStorage.setItem("TodoList", array);
 
-            item.parentElement.parentElement.remove();
-          }
+          item.parentElement.parentElement.remove();
         }
       }
       break;
