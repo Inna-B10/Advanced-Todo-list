@@ -28,8 +28,6 @@ const userInput = document.querySelector("#todo-text-input");
 const filterOption = document.querySelector("#selected-todoes");
 const deleteAll = document.querySelector("#deleteAll");
 const formElement = document.querySelector("form");
-const editBtn = document.querySelector(".edit-btn");
-const saveBtn = document.querySelector(".save-btn");
 
 /* ------------------- Delete Todo List From LocalStorage ------------------- */
 deleteAll.addEventListener("click", deleteDB);
@@ -60,52 +58,66 @@ formElement.addEventListener("submit", (event) => {
   const idValue = item.value;
 
   let array = todoList.getAllTodoes();
+  const unSaved = document.querySelector(".edited");
 
   switch (item.name) {
     /* ------------------------- Todo Toggle IsCompleted ------------------------ */
     case "complete":
-      for (const todo of array) {
-        if (todo.id === Number(idValue)) {
-          todo.isComplete === true
-            ? (todo.isComplete = false)
-            : (todo.isComplete = true);
-          todo.editedAt = timeStamp();
+      if (unSaved) {
+        alert("You have unsaved task!");
+      } else {
+        for (const todo of array) {
+          if (todo.id === Number(idValue)) {
+            todo.isComplete === true
+              ? (todo.isComplete = false)
+              : (todo.isComplete = true);
+            todo.editedAt = timeStamp();
 
-          array = JSON.stringify(array);
-          localStorage.setItem("TodoList", array);
+            array = JSON.stringify(array);
+            localStorage.setItem("TodoList", array);
 
-          const title = item.parentElement.querySelector(".update-title-input");
-          title.classList.toggle("complete");
+            const title = item.parentElement.querySelector(
+              ".update-title-input"
+            );
+            title.classList.toggle("complete");
 
-          const button = item.parentElement.querySelector(".fa");
-          button.classList.toggle("fa-check-square");
-          button.classList.toggle("fa-square");
+            const button = item.parentElement.querySelector(".fa");
+            button.classList.toggle("fa-check-square");
+            button.classList.toggle("fa-square");
 
-          updateDisplay("all");
+            updateDisplay("all");
+          }
         }
       }
       break;
     /* --------------------------- Delete Current Todo -------------------------- */
     case "delete":
-      for (const todo of array) {
-        if (todo.id === Number(idValue)) {
-          array.splice(array.indexOf(todo), 1);
+      if (unSaved) {
+        alert("You have unsaved task!");
+      } else {
+        for (const todo of array) {
+          if (todo.id === Number(idValue)) {
+            array.splice(array.indexOf(todo), 1);
 
-          array = JSON.stringify(array);
-          localStorage.setItem("TodoList", array);
+            array = JSON.stringify(array);
+            localStorage.setItem("TodoList", array);
 
-          item.parentElement.parentElement.remove();
+            item.parentElement.parentElement.remove();
+          }
         }
       }
       break;
     /* ------------------------------ Add New Todo ------------------------------ */
     case "addNewTask":
-      handleUserSubmit(userInput);
+      if (unSaved) {
+        alert("You have unsaved task!");
+      } else {
+        handleUserSubmit(userInput);
+      }
       break;
 
     /* ---------------------------- Edit/rename Task ---------------------------- */
     case "edit":
-      const unSaved = document.querySelector(".edited");
       if (unSaved) {
         alert("You have unsaved task!");
       } else {
@@ -118,27 +130,34 @@ formElement.addEventListener("submit", (event) => {
 
     /* ------------------------- Save Task After Editing ------------------------ */
     case "save":
-      const selectedInput = document.querySelector(".edited");
-      const saveInput = selectedInput.value;
+      const inputName = unSaved.id.split("-");
+      const id = inputName[1];
+
+      const saveInput = unSaved.value;
       if (saveInput.trim() === "") {
         alert(
-          "To do task is empty. If you want to delete it, click on trash button."
+          "Todo task is empty. If you want to delete it, click on trash button."
         );
       } else {
         for (const todo of array) {
-          if (todo.id === Number(idValue)) {
-            todo.title = saveInput;
+          if (todo.id === Number(id)) {
+            todo.title = saveInput.trim();
             todo.editedAt = timeStamp();
 
             array = JSON.stringify(array);
             localStorage.setItem("TodoList", array);
           }
+          unSaved.classList.add("update-title-input");
+          unSaved.classList.remove("active-input", "edited");
+          unSaved.disabled = true;
+
           updateDisplay("all");
         }
       }
       break;
   }
 });
+/* ------------------------------- End Switch ------------------------------- */
 
 //adds new todo
 function handleUserSubmit(string) {
@@ -149,7 +168,7 @@ function handleUserSubmit(string) {
     return;
   }
   const newItem = {
-    title: taskTitle,
+    title: taskTitle.trim(),
   };
   todoList.addTodo(newItem);
   updateDisplay("all");
@@ -162,41 +181,46 @@ function handleUserSubmit(string) {
  * @param {Todo[]} todoes
  */
 function updateDisplay(filter) {
-  displayList.innerHTML = "";
-  let array = JSON.parse(localStorage.getItem("TodoList"));
-
-  if (array) {
-    switch (filter) {
-      /* ------------------------- Display All Todo Tasks ------------------------- */
-      case "all":
-        for (const todo of array) {
-          const newChild = createTodoElement(todo);
-          displayList.appendChild(newChild);
-        }
-        break;
-
-      /* ---------------------- Display Only Completed Tasks ---------------------- */
-      case "completed":
-        for (const todo of array) {
-          if (todo.isComplete === true) {
-            const newChild = createTodoElement(todo);
-            displayList.appendChild(newChild);
-          }
-        }
-        break;
-      /* --------------------- Display Only Uncompleted Tasks --------------------- */
-      case "uncompleted":
-        for (const todo of array) {
-          if (todo.isComplete === false) {
-            const newChild = createTodoElement(todo);
-            displayList.appendChild(newChild);
-          }
-        }
-        break;
-    }
+  const unSaved = document.querySelector(".edited");
+  if (unSaved) {
+    alert("You have unsaved task!");
   } else {
-    /* ------------------- Message If No Task In Local Storage ------------------ */
-    displayList.innerHTML =
-      "<h2 class='text-center'> There are currently no tasks stored in the local storage.</h2>";
+    displayList.innerHTML = "";
+    let array = JSON.parse(localStorage.getItem("TodoList"));
+
+    if (array) {
+      switch (filter) {
+        /* ------------------------- Display All Todo Tasks ------------------------- */
+        case "all":
+          for (const todo of array) {
+            const newChild = createTodoElement(todo);
+            displayList.appendChild(newChild);
+          }
+          break;
+
+        /* ---------------------- Display Only Completed Tasks ---------------------- */
+        case "completed":
+          for (const todo of array) {
+            if (todo.isComplete === true) {
+              const newChild = createTodoElement(todo);
+              displayList.appendChild(newChild);
+            }
+          }
+          break;
+        /* --------------------- Display Only Uncompleted Tasks --------------------- */
+        case "uncompleted":
+          for (const todo of array) {
+            if (todo.isComplete === false) {
+              const newChild = createTodoElement(todo);
+              displayList.appendChild(newChild);
+            }
+          }
+          break;
+      }
+    } else {
+      /* ------------------- Message If No Task In Local Storage ------------------ */
+      displayList.innerHTML =
+        "<h2 class='text-center'> There are currently no tasks stored in the local storage.</h2>";
+    }
   }
 }

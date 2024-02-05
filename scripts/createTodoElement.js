@@ -52,6 +52,7 @@ export function createTodoElement(data) {
   divTodo.appendChild(completeBtn);
 
   const title = createNode("input", {
+    id: `input-${data.id}`,
     type: "text",
     value: data.title,
     class: "update-title-input",

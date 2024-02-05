@@ -49,7 +49,10 @@
 
 .complete {
   text-decoration: line-through;
-  opacity: 0.5;
+}
+
+.active-input {
+  background-color: var(--color-white) !important
 }
 
 /* ---------------------------------- Icons --------------------------------- */
@@ -87,8 +90,4 @@
 .complete-btn:hover,
 .trash-btn:hover {
   background-color: var(--color-primary);
-}
-
-.active-input {
-  background-color: var(--color-white) !important
 }
