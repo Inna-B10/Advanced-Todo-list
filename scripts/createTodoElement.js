@@ -41,6 +41,7 @@ export function createTodoElement(data) {
     class: "complete-btn",
     name: "complete",
     value: data.id,
+    title: "check/uncheck",
   });
   if (data.isComplete === true) {
     completeBtn.innerHTML = "<i class='fa fa-check-square'></i>";
@@ -59,10 +60,31 @@ export function createTodoElement(data) {
   title.innerText = data.title;
   divTodo.appendChild(title);
 
+  /* -------------------------------------------------------------------------- */
+  const editBtn = createNode("button", {
+    class: "edit-btn",
+    name: "edit",
+    value: data.id,
+    title: "Edit",
+  });
+  editBtn.innerHTML = "<i class='fa fa-edit'></i>";
+  divTodo.appendChild(editBtn);
+
+  const saveBtn = createNode("button", {
+    class: "save-btn",
+    name: "save",
+    value: data.id,
+    title: "Save",
+  });
+  saveBtn.innerHTML = "<i class='fa fa-save'></i>";
+  divTodo.appendChild(saveBtn);
+
+  /* -------------------------------------------------------------------------- */
   const deleteBtn = createNode("button", {
     class: "trash-btn",
     name: "delete",
     value: data.id,
+    title: "Delete",
   });
   deleteBtn.innerHTML = "<i class='fa fa-trash'></i>";
   divTodo.appendChild(deleteBtn);
@@ -70,7 +92,7 @@ export function createTodoElement(data) {
   wrapper.appendChild(divTodo);
 
   const divInfo = createNode("div", {
-    class: "addInfo flex column",
+    class: "addInfo flex",
   });
 
   if (data.editedAt !== "" && data.editedAt !== undefined) {

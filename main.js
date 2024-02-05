@@ -28,6 +28,8 @@ const userInput = document.querySelector("#todo-text-input");
 const filterOption = document.querySelector("#selected-todoes");
 const deleteAll = document.querySelector("#deleteAll");
 const formElement = document.querySelector("form");
+const editBtn = document.querySelector(".edit-btn");
+const saveBtn = document.querySelector(".save-btn");
 
 /* ------------------- Delete Todo List From LocalStorage ------------------- */
 deleteAll.addEventListener("click", deleteDB);
@@ -53,22 +55,28 @@ formElement.addEventListener("submit", (event) => {
   // console.log(values);
 
   /* ------------------------ Define Which Action To Do ----------------------- */
-  let action = "";
+
   const item = event.submitter;
+
   const idValue = item.value;
 
-  if (item.name === "complete") {
-    action = "complete";
-  }
-  if (item.name === "delete") {
-    action = "delete";
-  }
-  if (item.id === "todo-add-button") {
-    action = "add";
-  }
+  //console.log(item);
+  //  let action = "";
+  //   if (item.name === "complete") {
+  //     action = "complete";
+  //   }
+  //   if (item.name === "delete") {
+  //     action = "delete";
+  //   }
+  //   if (item.id === "todo-add-button") {
+  //     action = "add";
+  //   }
+  //   if (item.name ==="edit"){
+  //     action = "edit"
+  //   }
   let array = todoList.getAllTodoes();
 
-  switch (action) {
+  switch (item.name) {
     /* ------------------------- Todo Toggle IsCompleted ------------------------ */
     case "complete":
       for (const todo of array) {
@@ -106,8 +114,21 @@ formElement.addEventListener("submit", (event) => {
       }
       break;
     /* ------------------------------ Add New Todo ------------------------------ */
-    case "add":
+    case "addNewTask":
       handleUserSubmit(userInput);
+      break;
+
+    /* ---------------------------- Edit/rename Task ---------------------------- */
+    case "edit":
+      const inputEdit = item.previousElementSibling;
+      inputEdit.disabled = false;
+      inputEdit.classList.remove("update-title-input");
+      inputEdit.classList.add("active-input");
+      console.log(inputEdit);
+      break;
+
+    /* ------------------------- Save Task After Editing ------------------------ */
+    case "save":
       break;
   }
 });

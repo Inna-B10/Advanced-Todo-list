@@ -15,6 +15,7 @@
 }
 
 .todo-item {
+  justify-content: space-between;
   padding: 20px 20px 0px 20px;
 }
 
@@ -31,7 +32,7 @@
 }
 
 .addInfo {
-  align-items: end;
+  justify-content: end;
   padding: 0 10px 5px 0;
 }
 
@@ -52,17 +53,27 @@
 }
 
 /* ---------------------------------- Icons --------------------------------- */
+.save-btn,
+.edit-btn,
 .delete-all,
 .complete-btn,
 .trash-btn {
-  width: initial;
   cursor: pointer;
   background-color: DodgerBlue;
   border: none;
   color: white;
+}
 
-  margin: 0 10px;
-  font-size: 14px;
+.delete-all {
+  padding: 9px 0;
+}
+
+.save-btn,
+.edit-btn,
+.complete-btn,
+.trash-btn {
+  width: 48px;
+  height: 48px;
 }
 
 .complete-btn,
@@ -70,8 +81,14 @@
   padding: 4px 14px;
 }
 
+.edit-btn:hover,
+.save-btn:hover,
 .delete-all:hover,
 .complete-btn:hover,
 .trash-btn:hover {
-  background-color: RoyalBlue;
+  background-color: var(--color-primary);
+}
+
+.active-input {
+  background-color: var(--color-white) !important
 }

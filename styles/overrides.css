@@ -17,6 +17,8 @@ input {
   width: 70%;
   border: 2px solid var(--color-primary);
   border-radius: 4px;
+  background-color: var(--color-white);
+  font-size: 18px;
 }
 
 button {
@@ -29,6 +31,11 @@ button {
   font-family: inherit;
   background-color: var(--color-primary);
   color: var(--color-white);
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: DodgerBlue;
 }
 
 ul {
@@ -62,13 +69,15 @@ h2 {
 }
 
 select {
+  width: 20%;
   background-color: #1E90FF;
-  padding: 8px;
+  padding: 9px;
   border-color: var(--color-primary);
   border-radius: 4px;
   color: var(--color-white);
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bolder;
   font-family: inherit;
   border: none;
+  cursor: pointer;
 }
