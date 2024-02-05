@@ -57,23 +57,8 @@ formElement.addEventListener("submit", (event) => {
   /* ------------------------ Define Which Action To Do ----------------------- */
 
   const item = event.submitter;
-
   const idValue = item.value;
 
-  //console.log(item);
-  //  let action = "";
-  //   if (item.name === "complete") {
-  //     action = "complete";
-  //   }
-  //   if (item.name === "delete") {
-  //     action = "delete";
-  //   }
-  //   if (item.id === "todo-add-button") {
-  //     action = "add";
-  //   }
-  //   if (item.name ==="edit"){
-  //     action = "edit"
-  //   }
   let array = todoList.getAllTodoes();
 
   switch (item.name) {
@@ -120,15 +105,32 @@ formElement.addEventListener("submit", (event) => {
 
     /* ---------------------------- Edit/rename Task ---------------------------- */
     case "edit":
-      const inputEdit = item.previousElementSibling;
-      inputEdit.disabled = false;
-      inputEdit.classList.remove("update-title-input");
-      inputEdit.classList.add("active-input");
-      console.log(inputEdit);
+      const editInput = item.previousElementSibling;
+      editInput.disabled = false;
+      editInput.classList.add("active-input", "edited");
+      editInput.classList.remove("update-title-input");
       break;
 
     /* ------------------------- Save Task After Editing ------------------------ */
     case "save":
+      const selectedInput = document.querySelector(".edited");
+      const saveInput = selectedInput.value;
+
+      for (const todo of array) {
+        if (todo.id === Number(idValue)) {
+          todo.title = saveInput;
+          todo.editedAt = timeStamp();
+
+          array = JSON.stringify(array);
+          localStorage.setItem("TodoList", array);
+        }
+        // saveInput.disabled = true;
+        // saveInput.classList.remove("active-input", "edited");
+        // saveInput.classList.add("update-title-input");
+
+        updateDisplay("all");
+      }
+
       break;
   }
 });
